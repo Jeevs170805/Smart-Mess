@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment History</title>
+    <style>
+        body {
+            background-color: #1e1e1e;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #2c2c2c;
+        }
+        th, td {
+            border: 1px solid #444;
+            padding: 12px;
+        }
+        th {
+            background-color: #333;
+        }
+        input[type="number"] {
+            padding: 8px;
+            border-radius: 6px;
+            border: 1px solid #888;
+            background-color: #2c2c2c;
+            color: white;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            background-color: #6c757d;
+        }
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+    </style>
+</head>
+<body>
+    <h2>Payment History</h2>
+
+    <!-- Filter Info -->
+    {% if month %}
+        <p>Showing payments for month: <strong>{{ month }}</strong></p>
+    {% endif %}
+
+    <!-- Payment Table -->
+    <table border="1" cellpadding="10">
+        <thead>
+            <tr>
+                <th>Digital ID</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+            <tr>
+                <td>{{ payment.DIGITAL_ID }}</td>
+                <td>₹{{ "%.2f"|format(payment.AMOUNT) }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Total Amount -->
+    <p><strong>Total Amount Received:</strong> ₹{{ "%.2f"|format(total) }}</p>
+</body>
+</html>

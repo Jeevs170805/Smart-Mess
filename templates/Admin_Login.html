@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Mess - Admin Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Smart Mess</h1>
+        <h3>SSN College Of Engineering - Kalavakkam</h3>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <h2>Admin Login</h2>
+        <br><br>
+        {% if error %}
+            <p style="color:red;">{{ error }}</p>
+        {% endif %}
+
+        <!-- ✅ Corrected form -->
+        <form action="/admin_login" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <br>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <br>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <br><br>
+            <center>
+                <input type="submit" value="Login" class="login-button">
+            </center>
+        </form>
+    </div>
+
+    <br>
+    
+</body>
+</html>

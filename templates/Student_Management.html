@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Management</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            color: white;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .form-row label {
+            white-space: nowrap;
+        }
+
+        .form-row select,
+        .form-row input[type="text"] {
+            padding: 6px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+
+        .form-submit {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .form-submit input[type="submit"] {
+            background-color: #00d4b3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #1e1e1e;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2c3e50;
+        }
+
+        td {
+            background-color: #252525;
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Management</h2>
+
+    <form method="GET" action="{{ url_for('student_management') }}">
+        <div class="form-row">
+            <label for="year">Filter by Year:</label>
+            <select name="year">
+                <option value="All" {% if selected_year == 'All' %}selected{% endif %}>All Years</option>
+                <option value="1" {% if selected_year == '1' %}selected{% endif %}>1st Year</option>
+                <option value="2" {% if selected_year == '2' %}selected{% endif %}>2nd Year</option>
+                <option value="3" {% if selected_year == '3' %}selected{% endif %}>3rd Year</option>
+                <option value="4" {% if selected_year == '4' %}selected{% endif %}>4th Year</option>
+                <option value="PG" {% if selected_year == 'PG' %}selected{% endif %}>PG</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <label for="fee_status">Filter by Fee Status:</label>
+            <select name="fee_status" id="fee_status">
+                <option value="unpaid">Unpaid</option>
+            </select>
+        </div>
+
+        <div class="form-row">
+            <input type="text" name="search" placeholder="Search by name or username" value="{{ search_query }}" style="width: 100%;">
+        </div>
+
+        <div class="form-submit">
+            <input type="submit" value="Apply">
+        </div>
+    </form>
+
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Department</th>
+            <th>Hostel</th>
+            <th>Room</th>
+            <th>Username</th>
+            <th>Status</th>
+            <th>Fee Amount</th>
+            <th>Fee Status</th>
+            <th>Actions</th>
+
+        </tr>
+
+        {% for student in students %}
+        <tr>
+            <td>{{ student.NAME }}</td>
+            <td>{{ student.YEAR }}</td>
+            <td>{{ student.DEPARTMENT }}</td>
+            <td>{{ student.HOSTEL }}</td>
+            <td>{{ student.ROOM }}</td>
+            <td>{{ student.USERNAME }}</td>
+            <td>{{ student.STATUS }}</td>
+            <td>{{ student.FEE_AMOUNT }}</td>
+            <td>{{ student.FEE_STATUS}}</td>
+            <td>
+                {% if student.STATUS != 'approved' %}
+                    <a href="{{ url_for('approve_student', digital_id=student.DIGITAL_ID) }}">Approve</a>
+                {% endif %}
+                <a href="/reject_student/{{ student.ID }}" style="color: red;">Remove</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <a href="{{ url_for('admin_dashboard') }}" class="back-btn">← Back to Admin Dashboard</a>
+    </div>
+</div>
+
+</body>
+</html>

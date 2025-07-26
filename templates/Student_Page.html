@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Mess - Student Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<center>
+    <h1>Smart Mess</h1>
+    <h3>SSN College Of Engineering - Kalavakkam</h3>
+    <p>Welcome, <strong>{{ name }}</strong>!</p>
+
+    <hr><br><br>
+
+    <h2>Cancel Mess</h2>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p style="color: green;">{{ success }}</p>
+    {% endif %}
+
+    <form action="/submit_cancellation" method="post">
+        <label for="from">From Date:</label><br>
+        <input type="date" name="from_date" id="from" required><br><br>
+
+        <label for="to">To Date:</label><br>
+        <input type="date" name="to_date" id="to" required><br><br>
+        <input type="hidden" name="digital_id" value="{{ session['digital_id'] }}">
+
+        <input type="submit" value="Submit Cancellation">
+    </form>
+
+    <br><hr><br>
+
+    <h2>Fee Details</h2>
+    <p><strong>Total Amount to be Paid:</strong> {{ due_amount }}</p>
+
+    <button onclick="showQR()">Pay Now</button>
+
+    <div id="qr-section" style="display: none; margin-top: 20px;">
+        <h3>Scan to Pay</h3>
+        <img src="data:image/png;base64,{{ qr_code }}" alt="UPI QR Code">
+    </div>
+
+    <form action="/mark_payment" method="post">
+        <input type="hidden" name="digital_id" value="{{ session['digital_id'] }}">
+        <input type="hidden" name="amount" value="{{ due_amount | replace('₹', '') }}">
+        <input type="submit" value="Paid the Amount">
+    </form>
+
+
+    <br><br>
+    <a href="/" class="b-button">Logout</a>
+</center>
+<br>
+
+<script>
+    function showQR() {
+        document.getElementById('qr-section').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Mess - Student Registration</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="header">
+    <h1>Smart Mess</h1>
+    <h3>SSN College Of Engineering - Kalavakkam</h3>
+  </div>
+
+  <hr>
+
+  <div class="form-container">
+    <h2>Student Registration</h2>
+    <br>
+
+    <!-- Display error message -->
+    {% if error %}
+      <div style="color: red; font-weight: bold; margin-bottom: 10px;">
+        {{ error }}
+      </div>
+    {% endif %}
+
+    <!-- Display success message -->
+    {% if success %}
+      <div style="color: green; font-weight: bold; margin-bottom: 20px;">
+        {{ success }}
+      </div>
+      <a href="{{ url_for('home') }}" style="text-decoration: none; font-weight: bold;">&larr; Back to Home</a>
+      <br><br>
+    {% endif %}
+
+    <!-- Registration form (hidden after success) -->
+    {% if not success %}
+    <form action="/student_register" method="POST" class="registration-form">
+      <div class="form-group">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="year">Year</label><br>
+        <input type="text" id="year" name="year" required>
+      </div>
+
+      <div class="form-group">
+        <label for="dept">Department</label><br>
+        <input type="text" id="dept" name="department" required>
+      </div>
+
+      <div class="form-group">
+        <label for="hostel">Hostel Number</label><br>
+        <input type="text" id="hostel" name="hostel" required>
+      </div>
+
+      <div class="form-group">
+        <label for="room">Room Number</label><br>
+        <input type="text" id="room" name="room" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email ID</label><br>
+        <input type="email" id="email" name="email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="digital_id">Digital ID</label><br>
+        <input type="text" name="digital_id" id="digital_id" placeholder="" required>
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile Number</label><br>
+        <input type="text" id="mobile" name="mobile" required pattern="[0-9]{10}" title="Enter a 10-digit mobile number">
+      </div>
+
+      <div class="form-group">
+        <label for="username">New Username</label><br>
+        <input type="text" id="username" name="username" required>
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" required>
+      </div>
+
+      <div class="form-group">
+        <label for="confirm_password">Confirm Password</label><br>
+        <input type="password" id="confirm_password" name="confirm_password" required>
+      </div>
+
+      <div class="button-wrapper">
+        <button type="submit" class="login-button">Register</button>
+      </div>
+    </form>
+    {% endif %}
+  </div>
+  <br>
+</body>
+</html>

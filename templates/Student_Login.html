@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Mess - Student Login</title>
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+
+    <div class="header">
+        <h1>Smart Mess</h1>
+        <h3>SSN College Of Engineering - Kalavakkam</h3>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <h2>Student Login</h2>
+        <br><br>
+        <form action="/student_login" method="post" class="login-form">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <br>
+                <input type="text" name="username" id="username" placeholder="Enter your username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <br>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <br>
+            <input type="submit" value="Login" class="login-button">
+        </form>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+
+    <br>
+
+</body>
+</html>

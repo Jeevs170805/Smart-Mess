@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fee Details</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            min-height: 100vh;
+            color: white;
+        }
+
+        .container {
+            background-color: #111;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            width: 350px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 16px;
+            color: #ccc;
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #888;
+            border-radius: 6px;
+            background-color: #2c2c2c;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        button,
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            margin: 5px;
+        }
+
+        button:hover,
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            background-color: #6c757d;
+        }
+
+        .back-button:hover {
+            background-color: #5a6268;
+        }
+
+        table {
+            width: 90%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #222;
+            color: white;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #444;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2a2a2a;
+        }
+
+        form[action="/update_all_payments"] {
+            width: 90%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Fee Announcement</h2>
+        <form method="POST" action="/announce_fee">
+            <label for="gst">Select GST %:</label>
+            <input type="number" name="gst" id="gst" min="0" max="100" required>
+            <button type="submit">Send Fee Amount to Students</button>
+        </form>
+        <form action="{{ url_for('admin_dashboard') }}" method="get">
+            <button type="submit" class="back-button">Back to Admin Dashboard</button>
+        </form>
+
+
+    </div>
+
+    <h2>Payments Received</h2>
+    <table>
+        <tr>
+            <th>Digital ID</th>
+            <th>Amount</th>
+            <th>Paid On</th>
+            <th>Actions</th>
+        </tr>
+        {% for payment in payments %}
+        <tr>
+            <td>{{ payment.DIGITAL_ID }}</td>
+            <td>₹{{ payment.AMOUNT }}</td>
+            <td>{{ payment.PAID_DATE }}</td>
+            <td>
+                <!-- Received Button -->
+                <form method="POST" action="{{ url_for('admin_mark_payment') }}" style="display:inline;">
+                    <input type="hidden" name="digital_id" value="{{ payment.DIGITAL_ID }}">
+                    <input type="hidden" name="amount" value="{{ payment.AMOUNT }}">
+                    <input type="hidden" name="paid_date" value="{{ payment.PAID_DATE if payment.PAID_DATE else '' }}">
+                    <button type="submit">Received</button>
+                </form>
+
+                <!-- Not Received Button -->
+                <form method="POST" action="{{ url_for('admin_ignore_payment') }}" style="display:inline;">
+                    <input type="hidden" name="digital_id" value="{{ payment.DIGITAL_ID }}">
+                    <input type="hidden" name="amount" value="{{ payment.AMOUNT }}">
+                    <input type="hidden" name="paid_date" value="{{ payment.PAID_DATE if payment.PAID_DATE else '' }}">
+                    <button type="submit">Not Received</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+</html>

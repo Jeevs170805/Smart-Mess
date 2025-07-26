@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Mess - Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1e1e1e;
+            color: white;
+        }
+
+        h1, h2, h3 {
+            margin: 10px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .a-button {
+            display: inline-block;
+            width: 250px;
+            padding: 12px 20px;
+            margin: 10px;
+            font-size: 16px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .a-button:hover {
+            background-color: #3498db;
+        }
+
+        .logout-button {
+            text-decoration: none;
+            display: inline-block;
+            width: 250px;
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+
+        .logout-button:hover{
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <center>
+        <h1>Smart Mess</h1>
+        <h3>SSN College Of Engineering - Kalavakkam</h3>
+        <hr><br><br>
+
+        <h2>Admin Dashboard</h2><br><br>
+
+        <a href="{{ url_for('student_management') }}" class="a-button">Student Management</a><br>
+        <a href="{{ url_for('admin_cancellations') }}" class="a-button">Cancellation Approval</a><br>
+        <a href="{{ url_for('fee_announcement') }}" class="a-button">Fee Details</a><br>
+        <a href="{{ url_for('payment_history') }}" class="a-button">Payments</a><br>
+        <br><br>
+        <form action="{{ url_for('home') }}" method="get">
+            <button type="submit" class="logout-button">Logout</button>
+        </form>
+    </center>
+
+</body>
+</html>
