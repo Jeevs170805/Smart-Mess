@@ -1,8 +1,11 @@
 📖** Project Overview**
 
+
 The Smart Mess Management System is designed for hostel environments where hundreds of students rely on mess services. This system digitizes and automates all core mess operations, from student registration and meal cancellations to monthly fee announcements and real-time UPI-based payments. Admins can track payment status, approve cancellations, and notify students — all via a responsive and user-friendly web interface.
 
+
 ✨ **Features**
+
 
 👤 Student Module
 Secure Registration & Login
@@ -13,7 +16,10 @@ View announced fees, cancellation statuses, and payment QR codes
 
 Click "Paid" to confirm UPI payment
 
+
 🧑‍💼 Admin Module
+
+
 Approve/reject student registrations
 
 View and manage meal cancellation requests
@@ -26,14 +32,20 @@ Mark payments as "Received" or "Not Received"
 
 Generate payment history reports by month
 
+
 💳 Payment Integration
+
+
 UPI-based QR code generation per student
 
 Fee displayed with GST applied
 
 Easy tracking via Payment Received dashboard
 
+
 📬 Email Notification System
+
+
 Students receive emails on:
 
 Registration approval/rejection
@@ -44,54 +56,18 @@ Fee announcements
 
 Payment confirmation
 
+
 🧠 **How It Works**
+
+
 Registration Workflow
 
-Student fills out the registration form.
+Student fills out the registration form --> Admin approves the registration -->Student gets email confirmation -->Mess Cancellatio -->Student selects a valid future date range (>2 days ahead) -->Request goes to admin for approval -->Approved dates are excluded from fee calculation -->Fee Announcement-->Admin selects GST percentage and announces monthly fee -->Fee is calculated and stored per student (fee_amount) -->Notification is sent -->UPI Payment -->Student sees a QR code for the fee amount -->After payment, they click "Paid" -->Entry goes to payments_received -->Payment Confirmation -->Admin reviews received payments -->Marks them as “Received” (logs to payment_history) or “Not Received” (removes entry) -->Fee is updated in students table accordingly -->Admin filters and views payment history month-wise -->Total amount received is displayed.
 
-Admin approves the registration.
-
-Student gets email confirmation.
-
-Mess Cancellation
-
-Student selects a valid future date range (>2 days ahead).
-
-Request goes to admin for approval.
-
-Approved dates are excluded from fee calculation.
-
-Fee Announcement
-
-Admin selects GST percentage and announces monthly fee.
-
-Fee is calculated and stored per student (fee_amount).
-
-Notification is sent.
-
-UPI Payment
-
-Student sees a QR code for the fee amount.
-
-After payment, they click "Paid".
-
-Entry goes to payments_received.
-
-Payment Confirmation
-
-Admin reviews received payments.
-
-Marks them as “Received” (logs to payment_history) or “Not Received” (removes entry).
-
-Fee is updated in students table accordingly.
-
-Reports
-
-Admin filters and views payment history month-wise.
-
-Total amount received is displayed.
 
 🛠️ **Tech Stack**
+
+
 Layer	Technology
 Frontend	HTML, CSS
 Backend	Flask (Python)
@@ -99,7 +75,10 @@ Database	MySQL
 Email	Flask-Mail + SMTP
 Payment	QR Code Generator for UPI
 
+
 🗃️ **Database Schema**
+
+
 students
 Field	Type	Description
 DIGITAL_ID	VARCHAR(20)	Primary Key
@@ -141,7 +120,10 @@ GST	FLOAT
 TOTAL	FLOAT
 ANNOUNCED_ON	DATE
 
+
 🚀 **Setup Instructions**
+
+
 ⚙️ Requirements
 Python 3.x
 
@@ -152,7 +134,6 @@ Flask (pip install flask flask-mysqldb flask-mail)
 Email credentials for SMTP
 
 QR code module (pip install qrcode)
-
 
 Create database mess_system
 
@@ -172,22 +153,58 @@ Edit
 python app.py
 Visit http://127.0.0.1:5000 in your browser.
 
-📸 Screenshots
-Add screenshots of:
 
-Registration form
+### 📸 Screenshots
 
-Admin dashboard
 
-Cancellation requests
+#### 🏠 Home Page
+![Home Page](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Home_Page.png?raw=true)
 
-Fee announcement form
+---
 
-Payment QR screen
+#### 📝 Student Registration Page
+![Student Registration](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Student_Registration.png?raw=true)
 
-Payment history report
+---
+
+#### 🧑‍🎓 Student Dashboard
+![Student Dashboard](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Student_Dashboard.png?raw=true)
+
+---
+
+#### 👨‍💼 Admin Dashboard
+![Admin Dashboard](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Admin_Dashboard.png?raw=true)
+
+---
+
+#### 📋 Student Management
+![Student Management](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Student_Management.png?raw=true)
+
+---
+
+#### ❌ Cancellation Approval
+![Cancellation Approval](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Cancellation_Approval.png?raw=true)
+
+---
+
+#### 💸 UPI Payment Page
+![Payment Page](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Payment.png?raw=true)
+
+---
+
+#### ✅ Payment Confirmation
+![Payment Confirmation](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Payment_Confirmation.png?raw=true)
+
+---
+
+#### 📈 Payment History
+![Payment History](https://github.com/Jeevs170805/Smart-Mess/blob/main/Screenshots/Payment_history.png?raw=true)
+
+
 
 📧** Email Notification Events**
+
+
 Event	Trigger
 Student registration approved	Admin action
 Registration rejected	Admin action
@@ -196,7 +213,10 @@ Cancellation rejected	Admin action
 Payment marked as received	Admin action
 Fee announced	Admin action
 
+
 📌 **Future Improvements**
+
+
 🔒 OTP-based student verification
 
 🧠 AI-based mess utilization prediction
@@ -207,5 +227,8 @@ Fee announced	Admin action
 
 🔐 JWT-based login and role-based access
 
+
 📄 **License**
+
+
 This project is open-source and available under the MIT License.
