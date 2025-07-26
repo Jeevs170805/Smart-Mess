@@ -1,7 +1,9 @@
-📖 Project Overview
+📖** Project Overview**
+
 The Smart Mess Management System is designed for hostel environments where hundreds of students rely on mess services. This system digitizes and automates all core mess operations, from student registration and meal cancellations to monthly fee announcements and real-time UPI-based payments. Admins can track payment status, approve cancellations, and notify students — all via a responsive and user-friendly web interface.
 
-✨ Features
+✨ **Features**
+
 👤 Student Module
 Secure Registration & Login
 
@@ -42,7 +44,7 @@ Fee announcements
 
 Payment confirmation
 
-🧠 How It Works
+🧠 **How It Works**
 Registration Workflow
 
 Student fills out the registration form.
@@ -89,16 +91,15 @@ Admin filters and views payment history month-wise.
 
 Total amount received is displayed.
 
-🛠️ Tech Stack
+🛠️ **Tech Stack**
 Layer	Technology
-Frontend	HTML, CSS, Bootstrap, Jinja2
+Frontend	HTML, CSS
 Backend	Flask (Python)
 Database	MySQL
 Email	Flask-Mail + SMTP
 Payment	QR Code Generator for UPI
-Hosting	(Localhost / XAMPP / WAMP / Render / Heroku)
 
-🗃️ Database Schema
+🗃️ **Database Schema**
 students
 Field	Type	Description
 DIGITAL_ID	VARCHAR(20)	Primary Key
@@ -140,7 +141,7 @@ GST	FLOAT
 TOTAL	FLOAT
 ANNOUNCED_ON	DATE
 
-🚀 Setup Instructions
+🚀 **Setup Instructions**
 ⚙️ Requirements
 Python 3.x
 
@@ -195,7 +196,7 @@ Payment QR screen
 
 Payment history report
 
-📧 Email Notification Events
+📧** Email Notification Events**
 Event	Trigger
 Student registration approved	Admin action
 Registration rejected	Admin action
@@ -204,7 +205,7 @@ Cancellation rejected	Admin action
 Payment marked as received	Admin action
 Fee announced	Admin action
 
-📌 Future Improvements
+📌 **Future Improvements**
 🔒 OTP-based student verification
 
 🧠 AI-based mess utilization prediction
@@ -215,5 +216,5 @@ Fee announced	Admin action
 
 🔐 JWT-based login and role-based access
 
-📄 License
+📄 **License**
 This project is open-source and available under the MIT License.
