@@ -153,15 +153,6 @@ Email credentials for SMTP
 
 QR code module (pip install qrcode)
 
-🧩 Steps
-Clone the Repository
-
-bash
-Copy
-Edit
-git clone https://github.com/your-username/smart-mess-management.git
-cd smart-mess-management
-Set up the Database
 
 Create database mess_system
 
